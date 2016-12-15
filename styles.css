@@ -4,6 +4,7 @@ body{
 
 form {
     float: right;
+    color: #73972C;
     width: 200px;
     padding: 10px;
     margin: 8px 8px 8px 8px;
@@ -11,8 +12,17 @@ form {
 
 }
 
+/*todo: need to update table so it is same size as picture underneath*/
+table{
+    position: relative;
+    width: 1024px;
+    height: 863px;
+    margin: auto;
+}
+
 input {
         background-color: #73972C;
+        color: #314E10;
     }
 
 
