@@ -75,18 +75,20 @@
     </table>
 
 
+
+
+<div id="messageArea">
+
 </div>
 
-<div id="messages">
+<button onclick="initBoard(49)"> New Game</button>
 
-</div>
-
-<form id="userGuess">
-    Enter coordinates (i.e. A1)
-    <input type="text" name="userGuess">
-    <input type="submit" value="Fire!">
+<form>
+    Enter coordinates
+    <input type="text" id="userGuess" placeholder="A0">
+    <input type="submit" value="Fire!" onclick="evalGuess()">
 </form>
-
+</div>
 
 <script src="battleship.js"></script>
 </body>

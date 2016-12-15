@@ -4,45 +4,67 @@
 
 var boardCoordinates = [];
 var shipCoordinates = [];
-var missCount = 0;
-var hitCount = 0;
-var guessCount = 0;
+var missCount;
+var hitCount;
+var guessCount;
 
-function setShipLocation(){
-//todo: randomly choose 3 locations out of ship coordinates
 
-    var ship1 =Math.floor(Math.random()* 48);
+function initBoard(boardSize) {
+    for (var i =0; i< boardSize; i++){
+        boardCoordinates.push(i);
+    }
 
-    var ship2 =Math.floor(Math.random()* 48);
-    var ship3 =Math.floor(Math.random()* 48);
+    function placeShips(numOfShips) {
 
+        for (var i = 0; i < numOfShips; i++)
+
+        {var randomLoc = Math.floor(Math.random() * boardCoordinates.length);
+            shipCoordinates.push(randomLoc);
+            //todo: add way to verify locations aren't duplicates
+        }
+
+        console.log(shipCoordinates);
+    }
+
+    placeShips(3);
 
 }
 
-function evalGuess() {
-    var userGuess = document.getElementById("userGuess").target;
-    //todo: convert userGuess to squareID (i.e. A1 to 00)
 
-    if (shipCoordinates.indexOf(userGuess) < 0){
-        userMiss(userGuess);
-
-    } else {
-        userHit(userGuess)
-    }
+function userHit(squareId){
+    document.getElementById(squareId).className = "hit";
+    hitCount++;
+    guessCount++;
+    alert("Hit");
 }
 
 function userMiss(squareId){
-    document.getElementById(squareId).innerHTML= "<img src='./images/miss.png'>";
+    document.getElementById(squareId).className = "miss";
     missCount++;
     guessCount++;
+    alert("Miss!");
 
 }
 
-function userHit(squareId){
-    document.getElementById(squareId).innerHTML = "<img src='./images/ship.png'>";
-    hitCount++;
-    guessCount++;
+
+function evalGuess() {
+    var guess = document.getElementById("userGuess").target;
+    //todo: convert userGuess to squareID (i.e. A1 to 00)
+    console.log("user guessed " + guess);
+
+    if (shipCoordinates.indexOf(guess) < 0){
+        userMiss(guess);
+        console.log("user miss");
+
+    } else {
+        userHit(guess)
+        console.log("user hit");
+    }
 }
 
-//for testing
-userMiss(35);
+
+
+
+
+
+
