@@ -45,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/battleship.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
-              <caret line="26" column="33" lean-forward="false" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -226,12 +226,12 @@
       <updated>1481816856195</updated>
       <workItem from="1481816858580" duration="22000" />
       <workItem from="1481816894258" duration="54000" />
-      <workItem from="1481816962014" duration="11106000" />
+      <workItem from="1481816962014" duration="12388000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11182000" />
+    <option name="totallyTimeSpent" value="12464000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-809" y="1103" width="1440" height="877" extended-state="6" />
@@ -285,7 +285,7 @@
     <entry file="file://$PROJECT_DIR$/battleship.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
-          <caret line="26" column="33" lean-forward="false" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>

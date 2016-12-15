@@ -15,23 +15,43 @@ var view = {
         squareId.setAttribute("class", "miss");
 
     },
-}
+};
+
+
+var model = {
+    boardSize: 49,
+    numShips: 3,
+    shipsSunk: 0,
+    shipLength: 3,
+
+//array of ships, values temp hard-coded
+
+    ships: [
+        {locations: ["06", "16", "26"], hits: ["", "", ""]},
+        {locations: ["24", "34", "44"], hits: ["", "", ""]},
+        {locations: ["10", "11", "12"], hits: ["", "", ""]},
+
+    ],
+
+    fire: function(guess){
+        for (var i =0; i < this.numShips; i++){
+
+            var ship = this.ships[i];
+            var locations = ship.locations;
 
 
 
-
-//array of ships
-var ships = [
-    {locations: ["06", "16", "26"], hits: ["", "", ""]},
-    {locations: ["24", "34", "44"], hits: ["", "", ""]},
-    {locations: ["10", "11", "12"], hits: ["", "", ""]},
-
-]
+            if(locations.indexOf(guess)> -1){
+                view.displayHit(guess);
+                view.displayMessage("A hit!");
+            }
+        }
+    }
 
 
-view.displayMessage("hey there!");
-view.displayHit(30);
-view.displayMiss(20);
+};
+
+model.fire("10");
 
 
 
