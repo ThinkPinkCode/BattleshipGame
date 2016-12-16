@@ -25,15 +25,16 @@ var view = {
 
 var model = {
     boardSize: 49,
+    boardWidth: 7,
     numShips: 3,
     shipsSunk: 0,
     shipLength: 3,
 
 
     ships: [
-        {locations: ["00", "01", "02"], hits: []},
-        {locations: ["06", "13", "20"], hits: []},
-        {locations: ["47", "48", "49"], hits: []}
+        {locations: [0, 1, 2], hits: []},
+        {locations: [6, 13, 20], hits: []},
+        {locations: [47, 48, 49], hits: []}
 
     ],
 
@@ -95,20 +96,37 @@ var model = {
 var controller
 = {
     guesses: 0,
+    formattedGuess: "",
+    validFirstChar: ["a", "b", "c", "d", "e", "f", "g"],
 
     processGuess: function (guess) {
-        var formattedGuess = parseInt(guess) + 7;
+
+        guess.toLowerCase();
+        guess.isValid();
+        guess.convertToNum();
+
+
     },
 
     isValid: function(guess){
 
-        if( guess.length !== 2){
+
+        var validSecondChar = [0, 1, 2, 3, 4, 5, 6];
+
+        if( guess.length !== 2 || this.validFirstChar.indexOf(guess.charAt(0)) < 0 || validSecondChar.indexOf(guess.charAt(1))< 0){
             return false;
         }
 
-        
+        return true;
+    },
 
-    }
+    convertToNum: function(guess){
+        this.formattedGuess = parseInt(guess) + (this.validFirstChar.indexOf(guess.charAt(0)) * model.boardWidth)
+
+    },
+
+
+
 //GET AND PROCESS PLAYER'S GUESS
 
 
@@ -121,10 +139,10 @@ var controller
 
 
 // ----------------- TESTING ------------------------
-model.fire("02");
-model.fire("07");
-model.fire("00");
-model.fire("01");
+model.fire(2);
+model.fire(7);
+model.fire(0);
+model.fire(1);
 console.log("ships sunk :" + model.shipsSunk);
 
 
