@@ -1,3 +1,5 @@
+
+// ----------------- VIEW ------------------------
 var view = {
     displayMessage: function (message) {
 
@@ -18,13 +20,15 @@ var view = {
 };
 
 
+// ----------------- MODEL ------------------------
+
+
 var model = {
     boardSize: 49,
     numShips: 3,
     shipsSunk: 0,
     shipLength: 3,
 
-//array of ships, values temp hard-coded
 
     ships: [
         {locations: ["00", "01", "02"], hits: []},
@@ -34,7 +38,7 @@ var model = {
     ],
 
     fire: function (guess) {
-        var miss;
+        var miss = true;
 
         for (var i = 0; i < this.numShips; i++) {
 
@@ -67,15 +71,60 @@ var model = {
             return false;
         } else
             console.log("Ship Sunk!");
+            this.shipsSunk++;
+            this.isGameOver();
             return true;
+    },
+
+
+
+    isGameOver: function() {
+        if(this.shipsSunk < 3 ){
+            return false;
+        } else {
+            view.displayMessage("Game Over! All 3 ships are sunk");
+            return true;
+        }
     }
 
 
 };
 
+// ----------------- CONTROLLER ------------------------
+
+var controller
+= {
+    guesses: 0,
+
+    processGuess: function (guess) {
+        var formattedGuess = parseInt(guess) + 7;
+    },
+
+    isValid: function(guess){
+
+        if( guess.length !== 2){
+            return false;
+        }
+
+        
+
+    }
+//GET AND PROCESS PLAYER'S GUESS
+
+
+// KEEP TRACK OF # OF GUESSES
+// ASK MODEL TO UPDATE ITSELF BASED ON LATEST GUESS
+// DETERMINE WHEN THE GAME IS OVER
+
+}
+
+
+
+// ----------------- TESTING ------------------------
 model.fire("02");
 model.fire("07");
 model.fire("00");
 model.fire("01");
+console.log("ships sunk :" + model.shipsSunk);
 
 
