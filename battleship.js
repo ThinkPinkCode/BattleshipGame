@@ -14,7 +14,7 @@ var view = {
         var squareId = document.getElementById(location);
         squareId.setAttribute("class", "miss");
 
-    },
+    }
 };
 
 
@@ -27,108 +27,55 @@ var model = {
 //array of ships, values temp hard-coded
 
     ships: [
-        {locations: ["06", "16", "26"], hits: ["", "", ""]},
-        {locations: ["24", "34", "44"], hits: ["", "", ""]},
-        {locations: ["10", "11", "12"], hits: ["", "", ""]},
+        {locations: ["00", "01", "02"], hits: []},
+        {locations: ["06", "13", "20"], hits: []},
+        {locations: ["47", "48", "49"], hits: []}
 
     ],
 
-    fire: function(guess){
-        for (var i =0; i < this.numShips; i++){
+    fire: function (guess) {
+        var miss;
 
-            var ship = this.ships[i];
-            var locations = ship.locations;
+        for (var i = 0; i < this.numShips; i++) {
 
-
-
-            if(locations.indexOf(guess)> -1){
+            if (this.ships[i].locations.indexOf(guess) > -1) {
                 view.displayHit(guess);
                 view.displayMessage("A hit!");
+                this.ships[i].hits.push(guess);
+                miss = false;
+            }
+
+            if(!miss){
+                this.isSunk(i);
+                return;
             }
         }
+
+        if (miss) {
+            view.displayMiss(guess);
+            view.displayMessage("Miss!");
+        }
+
+
+
+    },
+
+
+    isSunk: function (i) {
+        if (this.ships[i].hits.length !== model.shipLength) {
+            console.log("not sunk");
+            return false;
+        } else
+            console.log("Ship Sunk!");
+            return true;
     }
 
 
 };
 
-model.fire("10");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// /**
-//  * Created by melanie.myers on 12/15/16.
-//  */
-//
-// var boardCoordinates = [];
-// var shipCoordinates = [];
-// var missCount;
-// var hitCount;
-// var guessCount;
-//
-//
-// function initBoard(boardSize) {
-//     for (var i = 0; i < boardSize; i++) {
-//         boardCoordinates.push(i);
-//     }
-//
-//     function placeShips(numOfShips) {
-//
-//         for (var i = 0; i < numOfShips; i++) {
-//             var randomLoc = Math.floor(Math.random() * boardCoordinates.length);
-//             shipCoordinates.push(randomLoc);
-//             //todo: add way to verify locations aren't duplicates
-//         }
-//
-//         console.log(shipCoordinates);
-//     }
-//
-//     placeShips(3);
-//
-// }
-//
-//
-// function userHit(squareId) {
-//     document.getElementById(squareId).className = "hit";
-//     hitCount++;
-//     guessCount++;
-//     alert("Hit");
-// }
-//
-// function userMiss(squareId) {
-//     document.getElementById(squareId).className = "miss";
-//     missCount++;
-//     guessCount++;
-//     alert("Miss!");
-//
-// }
-//
-//
-// function evalGuess() {
-//     var guess = document.getElementById("userGuess").target;
-//     //todo: convert userGuess to squareID (i.e. A1 to 00)
-//     console.log("user guessed " + guess);
-//
-//     if (shipCoordinates.indexOf(guess) < 0) {
-//         userMiss(guess);
-//         console.log("user miss");
-//
-//     } else {
-//         userHit(guess)
-//         console.log("user hit");
-//     }
-// }
-
-
+model.fire("02");
+model.fire("07");
+model.fire("00");
+model.fire("01");
 
 
